@@ -5,12 +5,22 @@ const Sidebar = (props) => {
   const noteElements = props.notes.map((note, index) => (
     <div key={note.id}>
       <div
-        className={`title ${
+        className={`${cn.title} ${
           note.id === props.currentNote.id ? cn.selectedNote : ""
         }`}
         onClick={() => props.setCurrentNoteId(note.id)}
       >
         <h4 className={cn.textSnippet}>{note.body.split("\n")[0]}</h4>
+        <button
+          className={cn.deleteBtn}
+          onClick={(event) => props.deleteNote(event, note.id)}
+        >
+          <i
+            className={`${cn.ggTrash} ${cn.trashIcon} ${
+              note.id === props.currentNote.id ? cn.ggTrashSelected : ""
+            }`}
+          ></i>
+        </button>
       </div>
     </div>
   ));
